@@ -19,8 +19,8 @@
 #            секунды = s % 60.
 
 def seconds_to_hms(seconds: int) -> str:
-    # TODO: реализовать
-    pass
+    hours, minu, sec = seconds //3600, (seconds % 3600) // 60, seconds % 60
+    return (f'{hours:02}:{minu:02}:{sec:02}')
 
 
 # ============================================================
