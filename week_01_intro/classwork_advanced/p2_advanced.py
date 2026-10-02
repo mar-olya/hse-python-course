@@ -36,8 +36,9 @@ def seconds_to_hms(seconds: int) -> str:
 # Подсказка: n // 100, (n // 10) % 10, n % 10.
 
 def sum_digits(n: int) -> int:
-    # TODO: реализовать
-    pass
+    hund, dec, un = n // 100, (n // 10) % 10, n % 10
+    total = hund + dec + un
+    return(f'{total} ({hund} + {dec} + {un})')
 
 
 # ============================================================
@@ -58,6 +59,7 @@ def sum_digits(n: int) -> int:
 # последовательно для каждого номинала.
 
 def coin_change(amount: int) -> dict:
+    
     # TODO: реализовать
     pass
 
