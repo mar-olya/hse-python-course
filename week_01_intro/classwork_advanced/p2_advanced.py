@@ -59,9 +59,21 @@ def sum_digits(n: int) -> int:
 # последовательно для каждого номинала.
 
 def coin_change(amount: int) -> dict:
+    result = {}
+
+    result[50] = amount // 50
+    amount %= 50
     
-    # TODO: реализовать
-    pass
+    result[10] = amount // 10
+    amount %= 10
+    
+    result[5] = amount // 5
+    amount %= 5
+    
+    result[1] = amount
+    
+    return result
+
 
 
 # ============================================================
@@ -85,8 +97,10 @@ def coin_change(amount: int) -> dict:
 #       print("Не положительное")
 
 def check_positive():
-    # TODO: реализовать
-    pass
+    if (n := int(input())) > 0:
+        print(f"Положительное: {n}")
+    else:
+        print("Не положительное")    
 
 
 # ============================================================
