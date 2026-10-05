@@ -52,9 +52,9 @@ def safe_input(s: str) -> str:
 #   Используйте split(":") и int().
 
 def parse_name_age(s: str) -> str:
-    """Вернуть приветствие с возрастом +1."""
-    # TODO: реализовать
-    raise NotImplementedError
+    name, age_str = s.split(":")
+    age = int(age_str)
+    return f'Hello, {name}! Next year you are {age + 1}.'
 
 
 # ============================================================
@@ -78,9 +78,14 @@ def parse_name_age(s: str) -> str:
 # Подсказка: f"value:>10.2f"
 
 def format_receipt(product: str, cost: float, amount: int) -> str:
-    """Вернуть строку чека."""
-    # TODO: реализовать
-    raise NotImplementedError
+    total = cost * amount
+    return "\n".join([
+        f"Product: {product}",
+        f"Cost: {cost:.2f}",
+        f"Amount: {amount}",
+        "- " * 20,
+        f"Overall: {total:.2f}",
+    ])   
 
 
 # ============================================================
@@ -102,9 +107,15 @@ def format_receipt(product: str, cost: float, amount: int) -> str:
 #   .quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
 
 def exact_total(price: str, quantity: int, tax_percent: str) -> str:
-    """Вернуть итоговую стоимость строкой с 2 знаками."""
-    # TODO: реализовать
-    raise NotImplementedError
+    from decimal import Decimal, ROUND_HALF_UP
+
+    price_d = Decimal(price)
+    tax_d = Decimal(tax_percent) / Decimal(100)
+
+    total =  price_d * quantity * (Decimal('1') + tax_d )
+    total = total.quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
+
+    return f"Overall: {total}"
 
 
 # ============================================================
@@ -119,9 +130,17 @@ def exact_total(price: str, quantity: int, tax_percent: str) -> str:
 #   Decimal: 0.3 -> True
 
 def compare_float_decimal() -> tuple:
-    """Вернуть (float_sum, float_eq, decimal_sum, decimal_eq)."""
-    # TODO: реализовать
-    raise NotImplementedError
+    from decimal import Decimal
+    fl = float(0.1) + float(0.2)
+    dc = Decimal('0.1') + Decimal('0.2')
+
+    fl_ok = (fl == 0.3)
+    dc_ok = (dc == Decimal('0.3'))
+
+    return (f"float: {fl} -> {fl_ok}",
+            f"Decimal: {dc} -> {dc_ok}")
+
+
 
 
 # ============================================================
@@ -138,10 +157,10 @@ def compare_float_decimal() -> tuple:
 #   Out: 1/2
 
 def sum_fractions(frac1: str, frac2: str) -> str:
-    """Вернуть несократимую сумму дробей строкой."""
-    # TODO: реализовать
-    raise NotImplementedError
+    from fractions import Fraction
 
+    total = Fraction(frac1) + Fraction(frac2)
+    return str(total)
 
 # ============================================================
 # Задача 4.4. Точное деление счёта
@@ -163,9 +182,17 @@ def sum_fractions(frac1: str, frac2: str) -> str:
 
 def split_bill(account: str, guests: int) -> dict:
     """Вернуть {'share': Decimal, 'total': Decimal, 'over': Decimal}."""
-    # TODO: реализовать
-    raise NotImplementedError
+    from decimal import Decimal
+    
+    acc = Decimal(account)
+    share = (acc / guests).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
+    
+    total = share * guests
+    over = total - acc #если работать изначально с целыми копейками, то будут точные числа
 
+    return {'share': share, 'total': total, 'over': over}
+
+    
 
 # ============================================================
 # Тесты (assert)
