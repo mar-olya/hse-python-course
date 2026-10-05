@@ -182,7 +182,7 @@ def sum_fractions(frac1: str, frac2: str) -> str:
 
 def split_bill(account: str, guests: int) -> dict:
     """Вернуть {'share': Decimal, 'total': Decimal, 'over': Decimal}."""
-    from decimal import Decimal
+    from decimal import Decimal, ROUND_HALF_UP
     
     acc = Decimal(account)
     share = (acc / guests).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
