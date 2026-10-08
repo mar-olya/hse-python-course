@@ -47,11 +47,9 @@ def task_1_3():
 # и сравнение).
 
 def task_1_4():
-    a = int(input())
-    if a > 0:
-        print (True)
-    else:
-        print(False)
+    a = float(input())
+    print(a > 0)
+    
 
 
 
@@ -108,9 +106,10 @@ def task_2_2(a, b):
 #   Используйте // и %. Для ведущего нуля: f"{h:02d}:{m:02d}".
 
 def task_2_3(minutes: int) -> str:
-    # TODO: реализовать
-    pass
+    hours = minutes // 60
+    minute = minutes % 60 
 
+    return f'{hours:02d}:{minute:02d}'
 
 # ============================================================
 # Подсказки
