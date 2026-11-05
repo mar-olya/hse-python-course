@@ -45,7 +45,7 @@ def is_alphanumeric(password):
 
     См.: https://docs.python.org/3/library/stdtypes.html#str.isalnum
     """
-    return any(i.isalnum() for i in password)
+    return all(i.isalnum() for i in password)
 
 
 def starts_not_with_digit(password):
